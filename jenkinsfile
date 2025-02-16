@@ -59,7 +59,7 @@ pipeline {
             steps {
                script{
                    withDockerRegistry(credentialsId: 'docker-cred') {
-                    sh "docker build -t shopping-cart:latest -f docker/Dockerfile ."
+                    sh "docker build -t shopping-cart:latest -f dockerfile ."
                  }
                }
             }
