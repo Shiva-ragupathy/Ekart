@@ -78,7 +78,7 @@ pipeline {
 
        stage('Trivy-Image-Scan') {
             steps {
-               sh "trivy image shivark1996shopping-cart:latest"
+               sh "trivy image shivark1996/shopping-cart:latest"
                sh "trivy image --severity HIGH,CRITICAL --format json -o shopping-cart.json shivark1996/shopping-cart:latest"
             }
         }   
