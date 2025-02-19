@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Git-Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Devops2022jk/Ekart.git'
+                git branch: 'main', url: 'https://github.com/Shiva-ragupathy/Ekart.git'
             }
         }
         
@@ -69,8 +69,8 @@ pipeline {
             steps {
                script{
                    withDockerRegistry(credentialsId: 'docker-cred') {
-                    sh "docker tag shopping-cart devopsjk2023/shopping-cart:latest"
-                    sh "docker push devopsjk2023/shopping-cart:latest"
+                    sh "docker tag shopping-cart shivark1996/shopping-cart:latest"
+                    sh "docker push shivark1996/shopping-cart:latest"
                  }
                }
             }
@@ -78,14 +78,14 @@ pipeline {
 
        stage('Trivy-Image-Scan') {
             steps {
-               sh "trivy image devopsjk2023/shopping-cart:latest"
-               sh "trivy image --severity HIGH,CRITICAL --format json -o shopping-cart.json devopsjk2023/shopping-cart:latest"
+               sh "trivy image shivark1996shopping-cart:latest"
+               sh "trivy image --severity HIGH,CRITICAL --format json -o shopping-cart.json shivark1996/shopping-cart:latest"
             }
         }   
 
        stage('Docker-Deploy') {
             steps {
-                sh "docker container run -it -d -p 8070:8070 --name ekartapp devopsjk2023/shopping-cart:latest"
+                sh "docker container run -it -d -p 8070:8070 --name ekartapp shivark1996/shopping-cart:latest"
             }
         } 
         
